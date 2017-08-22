@@ -73,11 +73,27 @@ ami_airbrake:
     # By default this bundle ignores all HttpException instances. (includes HttpNotFoundException, AccessDeniedException)
     # To log all exceptions leave this array empty.
     ignored_exceptions: ["Symfony\Component\HttpKernel\Exception\HttpException"]
+
+parameters:
+  # You may modify these parameters at your own risk
+  ami_airbrake.notifier.class: 'Airbrake\Notifier'
+  ami_airbrake.exception_listener.class: 'Ami\AirbrakeBundle\EventListener\ExceptionListener'
+  ami_airbrake.shutdown_listener.class: 'Ami\AirbrakeBundle\EventListener\ShutdownListener'
 ```
 
 ## Usage
 
 Once configured, bundle will automatically send exceptions/errors to airbrake server.
+
+You may access the [Notifier](https://github.com/airbrake/phpbrake#api) as `ami_airbrake.notifier` service
+
+```php
+    /** @var ContainerInterface $container */
+    $container->get('ami_airbrake.notifier')->addFilter(function ($notice) {
+        $notice['context']['environment'] = 'production';
+        return $notice;
+    });
+```
 
 ## License
 
