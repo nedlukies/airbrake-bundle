@@ -1,9 +1,4 @@
 language: php
-php:
-  - 5.5
-  - 7.0
-  - 7.1
-  - hhvm
 
 matrix:
   include:
@@ -30,10 +25,13 @@ matrix:
       env: SYMFONY_VERSION=3.3.*
     # hhvm
     - php: hhvm
+      dist: trusty
       env: SYMFONY_VERSION=2.8.*
     - php: hhvm
+      dist: trusty
       env: SYMFONY_VERSION=3.2.*
     - php: hhvm
+      dist: trusty
       env: SYMFONY_VERSION=3.3.*
 
 install:
