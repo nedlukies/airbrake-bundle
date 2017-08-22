@@ -2,12 +2,17 @@
 
 [![Build Status](https://api.travis-ci.org/aminin/airbrake-bundle.svg)](https://travis-ci.org/aminin/airbrake-bundle)
 [![Coding Style](https://img.shields.io/badge/phpcs-PSR--2-brightgreen.svg)](http://www.php-fig.org/psr/psr-2/)
+[![Latest Stable Version](https://poser.pugx.org/aminin/airbrake-bundle/v/stable)](https://packagist.org/packages/aminin/airbrake-bundle)
+[![Total Downloads](https://poser.pugx.org/aminin/airbrake-bundle/downloads)](https://packagist.org/packages/aminin/airbrake-bundle)
+[![Latest Unstable Version](https://poser.pugx.org/aminin/airbrake-bundle/v/unstable)](https://packagist.org/packages/aminin/airbrake-bundle)
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/e4f817d0-3e47-4b9b-afa1-128eb1178749/mini.png)](https://insight.sensiolabs.com/projects/e4f817d0-3e47-4b9b-afa1-128eb1178749)
+[![License](https://poser.pugx.org/aminin/airbrake-bundle/license)](https://packagist.org/packages/aminin/airbrake-bundle)
 
-[Airbrake.io](https://airbrake.io) & [Errbit](https://github.com/errbit/errbit) integration for Symfony2.
+[Airbrake.io](https://airbrake.io) & [Errbit](https://github.com/errbit/errbit) integration for Symfony 2/3.
 
 ## Prerequisites
 
-This version of the bundle requires Symfony 2.3+
+This version of the bundle requires Symfony 2.8+
 
 ## Installation
 
