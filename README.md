@@ -9,6 +9,7 @@
 [![License](https://poser.pugx.org/aminin/airbrake-bundle/license)](https://packagist.org/packages/aminin/airbrake-bundle)
 
 [Airbrake.io](https://airbrake.io) & [Errbit](https://github.com/errbit/errbit) integration for Symfony 2/3.
+This bundle plugs the [Airbrake API client] into Symfony project.
 
 ## Prerequisites
 
@@ -98,3 +99,10 @@ You may access the [Notifier](https://github.com/airbrake/phpbrake#api) as `ami_
 ## License
 
 This bundle is under the MIT license. See the complete license in the [Resources/meta/LICENSE](Resources/meta/LICENSE)
+
+## References
+
+Airbrake API client: https://github.com/airbrake/phpbrake
+
+[Airbrake API client]: https://github.com/airbrake/phpbrake
+
