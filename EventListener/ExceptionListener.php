@@ -3,7 +3,7 @@
 namespace Ami\AirbrakeBundle\EventListener;
 
 use Airbrake\Notifier;
-use Symfony\Component\Console\Event\ConsoleExceptionEvent;
+use Symfony\Component\Console\Event\ConsoleErrorEvent;
 use Symfony\Component\HttpKernel\Event\GetResponseForExceptionEvent;
 
 class ExceptionListener
@@ -29,11 +29,15 @@ class ExceptionListener
     }
 
     /**
-     * @param GetResponseForExceptionEvent|ConsoleExceptionEvent $event
+     * @param GetResponseForExceptionEvent|ConsoleErrorEvent $event
      */
     public function onKernelException($event)
     {
-        $exception = $event->getException();
+        if ($event instanceof ConsoleErrorEvent) {
+            $exception = $event->getError();
+        } else {
+            $exception = $event->getException();
+        }
 
         foreach ($this->ignoredExceptions as $ignoredException) {
             if ($exception instanceof $ignoredException) {

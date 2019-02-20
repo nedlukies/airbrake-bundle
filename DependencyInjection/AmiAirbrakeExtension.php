@@ -61,7 +61,7 @@ class AmiAirbrakeExtension extends Extension
                     ['event' => 'kernel.exception', 'method' => 'onKernelException']
                 )->addTag(
                     'kernel.event_listener',
-                    ['event' => 'console.exception', 'method' => 'onKernelException']
+                    ['event' => 'console.error', 'method' => 'onKernelException']
                 )
             );
 
