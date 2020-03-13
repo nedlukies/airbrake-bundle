@@ -8,12 +8,12 @@
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/e4f817d0-3e47-4b9b-afa1-128eb1178749/mini.png)](https://insight.sensiolabs.com/projects/e4f817d0-3e47-4b9b-afa1-128eb1178749)
 [![License](https://poser.pugx.org/aminin/airbrake-bundle/license)](https://packagist.org/packages/aminin/airbrake-bundle)
 
-[Airbrake.io](https://airbrake.io) & [Errbit](https://github.com/errbit/errbit) integration for Symfony 2/3/4.
+[Airbrake.io](https://airbrake.io) & [Errbit](https://github.com/errbit/errbit) integration for Symfony 3/4/5.
 This bundle plugs the [Airbrake API client] into Symfony project.
 
 ## Prerequisites
 
-This version of the bundle requires Symfony 2.8+
+This version of the bundle requires Symfony 3.4+ and php 7.2+
 
 ## Installation
 

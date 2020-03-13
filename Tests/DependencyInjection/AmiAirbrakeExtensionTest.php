@@ -2,13 +2,14 @@
 
 namespace Ami\AirbrakeBundle\DependencyInjection;
 
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
 use Symfony\Component\DependencyInjection\Reference;
 use Ami\AirbrakeBundle\DependencyInjection\AmiAirbrakeExtension;
 
-class AmiAirbrakeExtensionTest extends \PHPUnit_Framework_TestCase
+class AmiAirbrakeExtensionTest extends TestCase
 {
     /**
      * @var ContainerBuilder
@@ -20,7 +21,7 @@ class AmiAirbrakeExtensionTest extends \PHPUnit_Framework_TestCase
      */
     private $extension;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->container = new ContainerBuilder(new ParameterBag([
             'kernel.root_dir'    => __DIR__,
@@ -30,7 +31,7 @@ class AmiAirbrakeExtensionTest extends \PHPUnit_Framework_TestCase
         $this->extension = new AmiAirbrakeExtension();
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         unset($this->container, $this->extension);
     }
