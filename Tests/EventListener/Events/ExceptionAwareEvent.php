@@ -2,7 +2,6 @@
 
 namespace Ami\AirbrakeBundle\Tests\EventListener\Events;
 
-
 class ExceptionAwareEvent
 {
     private $exception;

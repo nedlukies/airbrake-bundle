@@ -6,7 +6,6 @@ use Ami\AirbrakeBundle\EventListener\ExceptionListener;
 use PHPUnit\Framework\TestCase;
 use Airbrake\Notifier;
 
-
 class ExceptionListenerTest extends TestCase
 {
     /**
@@ -33,7 +32,7 @@ class ExceptionListenerTest extends TestCase
     public function testNotifyOnException()
     {
         $this->notifier->expects($this->once())->method('notify')->with(
-            $this->callback(function($subject) {
+            $this->callback(function ($subject) {
                 return $subject->getMessage() == 'Test exception';
             })
         );
@@ -43,7 +42,7 @@ class ExceptionListenerTest extends TestCase
     public function testNotifyOnError()
     {
         $this->notifier->expects($this->once())->method('notify')->with(
-            $this->callback(function($subject) {
+            $this->callback(function ($subject) {
                 return $subject->getMessage() == 'Test error';
             })
         );
@@ -53,7 +52,7 @@ class ExceptionListenerTest extends TestCase
     public function testNotifyOnThrowable()
     {
         $this->notifier->expects($this->once())->method('notify')->with(
-            $this->callback(function($subject) {
+            $this->callback(function ($subject) {
                 return $subject->getMessage() == 'Test throwable';
             })
         );

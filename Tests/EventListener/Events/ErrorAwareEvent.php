@@ -2,7 +2,6 @@
 
 namespace Ami\AirbrakeBundle\Tests\EventListener\Events;
 
-
 class ErrorAwareEvent
 {
     private $error;
