@@ -27,9 +27,9 @@ class ExceptionListener
     }
 
     /**
-     * @param $event
+     * @param object $event
      */
-    public function onKernelException($event)
+    public function onKernelException(object $event)
     {
         if (method_exists($event, 'getThrowable')) {
             $exception = $event->getThrowable();
