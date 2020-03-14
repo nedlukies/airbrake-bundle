@@ -1,6 +1,6 @@
 <?php
 
-namespace Ami\AirbrakeBundle\DependencyInjection;
+namespace Ami\AirbrakeBundle\Tests\DependencyInjection;
 
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
