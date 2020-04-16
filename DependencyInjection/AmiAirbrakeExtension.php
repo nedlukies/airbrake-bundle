@@ -32,6 +32,7 @@ class AmiAirbrakeExtension extends Extension
         $container->setParameter('ami_airbrake.host', $config['host']);
         $container->setParameter('ami_airbrake.ignored_exceptions', $config['ignored_exceptions']);
 
+
         // Exception Listener
         if ($config['project_key']) {
             // Airbrake notifier
@@ -44,7 +45,9 @@ class AmiAirbrakeExtension extends Extension
                         'projectKey'    => $config['project_key'],
                         'host'          => $config['host'],
                         'appVersion'    => $this->getAppVersion($container),
-                        'environment'   => $container->getParameter('kernel.environment'),
+                        'environment'   => key_exists('env', $config) && $config['env'] ?
+                            $config['env'] :
+                            $container->getParameter('kernel.environment'),
                         'rootDirectory' => dirname($container->getParameter('kernel.root_dir'))
                     ]]
                 )
