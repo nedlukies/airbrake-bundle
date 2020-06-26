@@ -24,7 +24,7 @@ class AmiAirbrakeExtensionTest extends TestCase
     protected function setUp(): void
     {
         $this->container = new ContainerBuilder(new ParameterBag([
-            'kernel.root_dir'    => __DIR__,
+            'kernel.project_dir'    => __DIR__,
             'kernel.bundles'     => ['AmiAirbrakeBundle' => true],
             'kernel.environment' => 'test',
         ]));
