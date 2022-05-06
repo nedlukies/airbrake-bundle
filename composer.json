@@ -10,8 +10,8 @@
     ],
     "type": "symfony-bundle",
     "require": {
-        "symfony/framework-bundle": "^3.4|^4.4|^5.0",
-        "airbrake/phpbrake": "^0.7.0"
+        "symfony/framework-bundle": "^3.4|^4.4|^5.0|^6.0",
+        "airbrake/phpbrake": "^0.8.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^8.5",
