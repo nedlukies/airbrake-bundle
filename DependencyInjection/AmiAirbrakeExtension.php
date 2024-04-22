@@ -30,6 +30,7 @@ class AmiAirbrakeExtension extends Extension
         $container->setParameter('ami_airbrake.project_id', $config['project_id']);
         $container->setParameter('ami_airbrake.project_key', $config['project_key']);
         $container->setParameter('ami_airbrake.host', $config['host']);
+        $container->setParameter('ami_airbrake.remote_config', $config['remote_config']);
         $container->setParameter('ami_airbrake.ignored_exceptions', $config['ignored_exceptions']);
 
 
@@ -44,6 +45,7 @@ class AmiAirbrakeExtension extends Extension
                         'projectId'     => $config['project_id'],
                         'projectKey'    => $config['project_key'],
                         'host'          => $config['host'],
+                        'remoteConfig'  => $config['remote_config'],
                         'appVersion'    => $this->getAppVersion($container),
                         'environment'   => key_exists('env', $config) && $config['env'] ?
                             $config['env'] :
