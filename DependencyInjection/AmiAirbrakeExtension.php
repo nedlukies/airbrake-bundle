@@ -50,7 +50,7 @@ class AmiAirbrakeExtension extends Extension
                         'environment'   => key_exists('env', $config) && $config['env'] ?
                             $config['env'] :
                             $container->getParameter('kernel.environment'),
-                        'rootDirectory' => dirname($container->getParameter('kernel.project_dir'))
+                        'rootDirectory' => $container->getParameter('kernel.project_dir')
                     ]]
                 )
             );
@@ -86,7 +86,7 @@ class AmiAirbrakeExtension extends Extension
 
     public function getAppVersion(ContainerBuilder $container)
     {
-        $rootDir = dirname($container->getParameter('kernel.project_dir'));
+        $rootDir = $container->getParameter('kernel.project_dir');
 
         return file_exists("$rootDir/REVISION") ? trim(file_get_contents("$rootDir/REVISION")) : null;
     }
