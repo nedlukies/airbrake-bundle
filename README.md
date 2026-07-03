@@ -1,53 +1,42 @@
 # AmiAirbrakeBundle
 
-[![Build Status](https://api.travis-ci.org/aminin/airbrake-bundle.svg)](https://travis-ci.org/aminin/airbrake-bundle)
-[![Coding Style](https://img.shields.io/badge/phpcs-PSR--2-brightgreen.svg)](http://www.php-fig.org/psr/psr-2/)
-[![Latest Stable Version](https://poser.pugx.org/aminin/airbrake-bundle/v/stable)](https://packagist.org/packages/aminin/airbrake-bundle)
-[![Total Downloads](https://poser.pugx.org/aminin/airbrake-bundle/downloads)](https://packagist.org/packages/aminin/airbrake-bundle)
-[![Latest Unstable Version](https://poser.pugx.org/aminin/airbrake-bundle/v/unstable)](https://packagist.org/packages/aminin/airbrake-bundle)
-[![SensioLabsInsight](https://insight.sensiolabs.com/projects/e4f817d0-3e47-4b9b-afa1-128eb1178749/mini.png)](https://insight.sensiolabs.com/projects/e4f817d0-3e47-4b9b-afa1-128eb1178749)
-[![License](https://poser.pugx.org/aminin/airbrake-bundle/license)](https://packagist.org/packages/aminin/airbrake-bundle)
+[Airbrake.io](https://airbrake.io) & [Errbit](https://github.com/errbit/errbit) integration for Symfony 6/7.
+This bundle plugs the [Airbrake API client] into a Symfony project.
 
-[Airbrake.io](https://airbrake.io) & [Errbit](https://github.com/errbit/errbit) integration for Symfony 3/4/5.
-This bundle plugs the [Airbrake API client] into Symfony project.
+This is a fork of [aminin/airbrake-bundle](https://github.com/aminin/airbrake-bundle).
 
 ## Prerequisites
 
-This version of the bundle requires Symfony 3.4+ and php 7.2+
+This version of the bundle requires Symfony 6.0+ and PHP 8.1+
 
 ## Installation
 
-### Step 1: Download AmiAirbrakeBundle using composer
-
-Add AmiAirbrakeBundle in your composer.json:
+### Step 1: Download the bundle using composer
 
 ```shell
-$ composer require aminin/airbrake-bundle
+$ composer require nedlukies/airbrake-bundle
 ```
 
 ### Step 2: Enable the bundle
 
-Enable the bundle in the kernel:
+If it is not added automatically by Symfony Flex, register the bundle in `config/bundles.php`:
 
 ```php
 <?php
-// app/AppKernel.php
+// config/bundles.php
 
-public function registerBundles()
-{
-    $bundles = array(
-        // ...
-        new Ami\AirbrakeBundle\AmiAirbrakeBundle(),
-    );
-}
+return [
+    // ...
+    Ami\AirbrakeBundle\AmiAirbrakeBundle::class => ['all' => true],
+];
 ```
 
-### Step 3: Configure the AmiAirbrakeBundle
+### Step 3: Configure the bundle
 
-Add the following configuration to your `config.yml` file
+Add the following configuration to `config/packages/ami_airbrake.yaml`
 
 ```yml
-# app/config/config.yml
+# config/packages/ami_airbrake.yaml
 ami_airbrake:
     project_id:  YOUR-PROJECT-ID
     project_key: YOUR-API-KEY
@@ -70,6 +59,10 @@ ami_airbrake:
     # You can omit the scheme ("https" will be assumed) and the port (80 or 443 will be assumed).
     host: http://errbit.localhost:8000
 
+    # Set to false when logging to a non-Airbrake server (e.g. Errbit)
+    # to disable fetching the remote config from Airbrake.
+    remote_config: true
+
     # You might want to ignore some exceptions such as http not found, access denied etc.
     # By default this bundle ignores all HttpException instances. (includes HttpNotFoundException, AccessDeniedException)
     # To log all exceptions leave this array empty.
@@ -86,14 +79,27 @@ parameters:
 
 Once configured, bundle will automatically send exceptions/errors to airbrake server.
 
-You may access the [Notifier](https://github.com/airbrake/phpbrake#api) as `ami_airbrake.notifier` service
+You may access the [Notifier](https://github.com/airbrake/phpbrake#api) through dependency injection
+by type-hinting `Airbrake\Notifier` (the service is private, so it cannot be fetched from the
+container directly):
 
 ```php
-    /** @var ContainerInterface $container */
-    $container->get('ami_airbrake.notifier')->addFilter(function ($notice) {
-        $notice['context']['environment'] = 'production';
-        return $notice;
-    });
+use Airbrake\Notifier;
+
+class MyService
+{
+    public function __construct(private Notifier $notifier)
+    {
+    }
+
+    public function doSomething(): void
+    {
+        $this->notifier->addFilter(function ($notice) {
+            $notice['context']['environment'] = 'production';
+            return $notice;
+        });
+    }
+}
 ```
 
 ## License
@@ -105,4 +111,3 @@ This bundle is under the MIT license. See the complete license in the [Resources
 Airbrake API client: https://github.com/airbrake/phpbrake
 
 [Airbrake API client]: https://github.com/airbrake/phpbrake
-

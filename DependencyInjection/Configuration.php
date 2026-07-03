@@ -15,12 +15,10 @@ class Configuration implements ConfigurationInterface
     /**
      * {@inheritdoc}
      */
-    public function getConfigTreeBuilder()
+    public function getConfigTreeBuilder(): TreeBuilder
     {
         $treeBuilder = new TreeBuilder('ami_airbrake');
-        $rootNode = \method_exists($treeBuilder, "getRootNode")
-            ? $treeBuilder->getRootNode()
-            : $treeBuilder->root("ami_airbrake"); // BC layer for symfony 4.1 and older
+        $rootNode = $treeBuilder->getRootNode();
 
         $rootNode
             ->children()

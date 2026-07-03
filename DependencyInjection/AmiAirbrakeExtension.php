@@ -5,9 +5,9 @@ namespace Ami\AirbrakeBundle\DependencyInjection;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
+use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\DependencyInjection\Loader;
 use Symfony\Component\DependencyInjection\Reference;
-use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
 /**
  * This is the class that loads and manages your bundle configuration
@@ -19,7 +19,7 @@ class AmiAirbrakeExtension extends Extension
     /**
      * {@inheritdoc}
      */
-    public function load(array $configs, ContainerBuilder $container)
+    public function load(array $configs, ContainerBuilder $container): void
     {
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
@@ -53,6 +53,10 @@ class AmiAirbrakeExtension extends Extension
                         'rootDirectory' => $container->getParameter('kernel.project_dir')
                     ]]
                 )
+            );
+            $container->setAlias(
+                $container->getParameter('ami_airbrake.notifier.class'),
+                'ami_airbrake.notifier'
             );
 
             // Exception Listener

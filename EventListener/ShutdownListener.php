@@ -3,7 +3,6 @@
 namespace Ami\AirbrakeBundle\EventListener;
 
 use Airbrake\Notifier;
-use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
 
 class ShutdownListener
 {
